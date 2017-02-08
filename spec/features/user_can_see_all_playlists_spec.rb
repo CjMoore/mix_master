@@ -1,15 +1,11 @@
 require_relative '../rails_helper'
+require 'pry'
 
 RSpec.feature "When user visits playlist index" do
   scenario "they can see all present playlists" do
-    song_1 = Song.create(title: "Yup")
-    song_2 = Song.create(title: "Sure")
-    song_3 = Song.create(title: "Uh")
-
-
-    playlist = Playlist.create(name: "Jamz", song_ids: [song_1.id, song_2.id, song_3.id])
-
-    playlist2 = Playlist.create(name: "Jammin", song_ids: [song_1.id, song_2.id, song_3.id])
+    song_1, song_2 = create_list(:song, 2)
+    playlist = create(:playlist, song_ids: [song_1.id, song_2.id])
+    playlist2 = create(:playlist, song_ids: [song_1.id, song_2.id])
 
     visit(playlists_path)
 
