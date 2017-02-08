@@ -2,12 +2,9 @@ require_relative '../rails_helper'
 
 RSpec.feature "When a user edits a playlist" do
   scenario "they are able to see updated attributes on playlist show" do
-    song_1 = Song.create(title: "Yup")
-    song_2 = Song.create(title: "Sure")
-    song_3 = Song.create(title: "Uh")
+    song_1, song_2, song_3 = create_list(:song, 3)
 
-
-    playlist = Playlist.create(name: "Jamz", song_ids: [song_1.id, song_2.id])
+    playlist = create(:playlist, name: "Jamz", song_ids: [song_1.id, song_2.id])
 
     visit(edit_playlist_path(playlist))
     check("Song-#{song_2.id}")

@@ -4,8 +4,9 @@ describe "When user visits artist index" do
   scenario "They are able to see all artists in database" do
     marley_path = "http://cps-static.rovicorp.com/3/JPG_400/MI0003/146/MI0003146038.jpg"
     sinbad_path = "https://pbs.twimg.com/profile_images/477764918326743040/q8_9xrhm.png"
-    Artist.create(name: "Bob Marley", image_path: marley_path)
-    Artist.create(name: "Sinbad", image_path: sinbad_path)
+
+    artist1 = create(:artist, name: "Bob Marley", image_path: marley_path)
+    artist2 = create(:artist, name: "Sinbad", image_path: sinbad_path)
 
     visit(artists_path)
 
